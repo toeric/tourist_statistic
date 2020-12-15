@@ -1,257 +1,100 @@
-(function (d3) {
-  'use strict';
+// set the dimensions and margins of the graph
+var margin = {top: 20, right: 30, bottom: 0, left: 10},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
-  const dropDownMenu = (selection, props) => {
-    const {
-      options,
-      onOptionClicked,
-      selectedOption
-    } = props;
-    
-    let select = selection.selectAll('select').data([null]);
-    select = select.enter().append('select')
-      .merge(select)
-        .on('change', function() {
-  		onOptionClicked(this.value);  
-    	  });
-    
-    const option = select.selectAll('option').data(options);
-    option.enter().append('option')
-      .merge(option)
-        .attr('value', d => d)
-        .property('selected', d => d === selectedOption)
-        .text(d => d);
-  };
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
-  const svg = d3.select('svg');
+// Parse the Data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv", function(data) {
 
-  const width = +svg.attr('width');
-  const height = +svg.attr('height');
+  // List of groups = header of the csv files
+  var keys = data.columns.slice(1)
 
-  let xColumn;
-  let yColumn;
-  let global_data;
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain(d3.extent(data, function(d) { return d.year; }))
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height*0.8 + ")")
+    .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([1900, 1925, 1975, 2000]))
+    .select(".domain").remove()
 
-  xColumn = 'sepalLength';
-  yColumn = 'sepalWidth';
+    // Customization
+  svg.selectAll(".tick line").attr("stroke", "#b8b8b8")
 
+  // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height-30 )
+      .text("Time (year)");
 
-  const onXColumnClicked = column => {
-    xColumn = column;  
-    svg.selectAll("*").remove();
-    render(global_data);
-  };
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([-100000, 100000])
+    .range([ height, 0 ]);
 
-  const onYColumnClicked = column => {
-  	yColumn = column; 
-    svg.selectAll("*").remove();
-    render(global_data);
-  };
+  // color palette
+  var color = d3.scaleOrdinal()
+    .domain(keys)
+    .range(d3.schemeDark2);
 
+  //stack the data?
+  var stackedData = d3.stack()
+    .offset(d3.stackOffsetSilhouette)
+    .keys(keys)
+    (data)
 
-  const render = data => {
-    
-    const title = 'Iris';
-    
-    // const xValue = d => d.petalLength;
-    // const xAxisLabel = 'petalLength';
-    
-    
-    
-    // const yValue = d => d.sepalWidth;
-    const circleRadius = 10;
-    // const yAxisLabel = 'sepalWidth';
-    
-    let xValue;
-    let xAxisLabel;
-    let yValue;
-    let yAxisLabel;
-    
-    if (xColumn == 'sepalLength'){
-    	xValue = d => d.sepalLength;
-    	xAxisLabel = 'Sepal Length';
-    }else if(xColumn == 'sepalWidth'){
-      xValue = d => d.sepalWidth;
-    	xAxisLabel = 'Sepal Width';
-    }else if(xColumn == 'petalLength'){
-      xValue = d => d.petalLength;
-    	xAxisLabel = 'Petal Length';
-    }else if(xColumn == 'petalWidth'){
-      xValue = d => d.petalWidth;
-    	xAxisLabel = 'Petal Width';
-    }  
-    
-    if (yColumn == 'sepalLength'){
-    	yValue = d => d.sepalLength;
-    	yAxisLabel = 'Sepal Length';
-    }else if(yColumn == 'sepalWidth'){
-      yValue = d => d.sepalWidth;
-    	yAxisLabel = 'Sepal Width';
-    }else if(yColumn == 'petalLength'){
-      yValue = d => d.petalLength;
-    	yAxisLabel = 'Petal Length';
-    }else if(yColumn == 'petalWidth'){
-      yValue = d => d.petalWidth;
-    	yAxisLabel = 'Petal Width';
-    }  
-    const margin = { top: 60, right: 200, bottom: 88, left: 150 };
-    const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom;
-    
-    const colorValue = d => d.species;
-    
-    // if(species == "setosa")
-    // 	console.log(innerHeight)
+    // create a tooltip
+    var Tooltip = svg
+    .append("text")
+    .attr("x", 0)
+    .attr("y", 0)
+    .style("opacity", 0)
+    .style("font-size", 17)
 
-    
-     const colorScale = d3.scaleOrdinal()
-      .domain(data.map(colorValue))
-      .range(['#E6842A', '#137B80', '#8E6C8A']);
-    
-    // console.log(data.map(colorValue))
-    
-    const xScale = d3.scaleLinear()
-      .domain(d3.extent(data, xValue))
-      .range([0, innerWidth])
-      .nice();
-    
-    const yScale = d3.scaleLinear()
-      .domain(d3.extent(data, yValue))
-      .range([innerHeight, 0])
-      .nice();
-    
-    const g = svg.append('g')
-      .attr('transform', `translate(${margin.left},${margin.top})`);
-    
-    const g_class = svg.append('g')
-      .attr('transform', `translate(${500},${100})`);
-    
-    g_class.append('text')
-    		.attr('class', 'species')
-        .attr('y', 10)
-    		.attr('x', 300)
-        .text('Flower classes');
-    
-    g_class.append('circle')
-        .attr('cy', 50)
-        .attr('cx', 300)
-        .attr('r', circleRadius)
-  			.attr('fill', '#E6842A');
-    
-    g_class.append('text')
-    		.attr('class', 'species_each')
-        .attr('y', 55)
-    		.attr('x', 320)
-        .text('setosa');
-    
-    g_class.append('circle')
-        .attr('cy', 80)
-        .attr('cx', 300)
-        .attr('r', circleRadius)
-  			.attr('fill', '#137B80');
-    
-    g_class.append('text')
-    		.attr('class', 'species_each')
-        .attr('y', 85)
-    		.attr('x', 320)
-        .text('versicolor');
-    
-    g_class.append('circle')
-        .attr('cy', 110)
-        .attr('cx', 300)
-        .attr('r', circleRadius)
-  			.attr('fill', '#8E6C8A');
-    
-     g_class.append('text')
-    		.attr('class', 'species_each')
-        .attr('y', 115)
-    		.attr('x', 320)
-        .text('virginica');
-    
-    d3.select('#x-menu')
-      .call(dropDownMenu, {
-        options: data.columns.filter(column =>
-          column !== 'species'
-          // column !== yColumn
-        ),
-        onOptionClicked: onXColumnClicked,
-        selectedOption: xColumn
-    });
-    
-    d3.select('#y-menu')
-      .call(dropDownMenu, {
-        options: data.columns.filter(column =>
-          column !== 'species'
-          // column !== xColumn
-        ),
-        onOptionClicked: onYColumnClicked,
-        selectedOption: yColumn
-    });
+  // Three function that change the tooltip when user hover / move / leave a cell
+  var mouseover = function(d) {
+    Tooltip.style("opacity", 1)
+    d3.selectAll(".myArea").style("opacity", .2)
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1)
+  }
+  var mousemove = function(d,i) {
+    grp = keys[i]
+    Tooltip.text(grp)
+  }
+  var mouseleave = function(d) {
+    Tooltip.style("opacity", 0)
+    d3.selectAll(".myArea").style("opacity", 1).style("stroke", "none")
+   }
 
-    
-    const xAxis = d3.axisBottom(xScale)
-      .tickSize(-innerHeight)
-      .tickPadding(15);
-    
-    const yAxis = d3.axisLeft(yScale)
-      .tickSize(-innerWidth)
-      .tickPadding(10);
-    
-    const yAxisG = g.append('g').call(yAxis);
-    yAxisG.selectAll('.domain').remove();
-    
-    yAxisG.append('text')
-        .attr('class', 'axis-label')
-        .attr('y', -93)
-        .attr('x', -innerHeight / 2)
-        .attr('fill', 'black')
-        .attr('transform', `rotate(-90)`)
-        .attr('text-anchor', 'middle')
-        .text(yAxisLabel);
-    
-    const xAxisG = g.append('g').call(xAxis)
-      .attr('transform', `translate(0,${innerHeight})`);
-    
-    xAxisG.select('.domain').remove();
-    
-    xAxisG.append('text')
-        .attr('class', 'axis-label')
-        .attr('y', 75)
-        .attr('x', innerWidth / 2)
-        .attr('fill', 'black')
-        .text(xAxisLabel);
-    
-    g.selectAll('circle').data(data)
-      .enter().append('circle')
-        .attr('cy', d => yScale(yValue(d)))
-        .attr('cx', d => xScale(xValue(d)))
-        .attr('r', circleRadius)
-    		// .attr('fill', 'red');
-    		.attr('fill', d => colorScale(colorValue(d)));
-    
-    
-    g.append('text')
-        .attr('class', 'title')
-        .attr('y', -10)
-    		.attr('x', 265)
-        .text(title);
-    
-    
+  // Area generator
+  var area = d3.area()
+    .x(function(d) { return x(d.data.year); })
+    .y0(function(d) { return y(d[0]); })
+    .y1(function(d) { return y(d[1]); })
 
-  };
+    // Show the areas
+  svg
+  .selectAll("mylayers")
+  .data(stackedData)
+  .enter()
+  .append("path")
+    .attr("class", "myArea")
+    .style("fill", function(d) { return color(d.key); })
+    .attr("d", area)
+    .on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseleave", mouseleave)
 
-  d3.csv('iris.csv')
-    .then(data => {
-    	global_data = data;
-      data.forEach(d => {
-        d.sepalLength = +d.sepalLength;
-        d.sepalWidth = +d.sepalWidth;
-        d.petalLength = +d.petalLength;
-        d.petalWidth = +d.petalWidth;
-        d.species = d.species;
-      });
-      render(data);
-    });
-
-}(d3));
-
+})
