@@ -240,7 +240,7 @@
 
   };
 
-  d3.csv('https://vizhub.com/curran/datasets/iris.csv')
+  d3.csv('iris.csv')
     .then(data => {
     	global_data = data;
       data.forEach(d => {
