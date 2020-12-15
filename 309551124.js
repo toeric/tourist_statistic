@@ -1,3 +1,5 @@
+
+
 // set the dimensions and margins of the graph
 var margin = {top: 20, right: 30, bottom: 0, left: 10},
     width = 460 - margin.left - margin.right,
@@ -26,8 +28,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .attr("transform", "translate(0," + height*0.8 + ")")
     .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([1900, 1925, 1975, 2000]))
     .select(".domain").remove()
-
-    // Customization
+  // Customization
   svg.selectAll(".tick line").attr("stroke", "#b8b8b8")
 
   // Add X axis label:
@@ -53,8 +54,8 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .keys(keys)
     (data)
 
-    // create a tooltip
-    var Tooltip = svg
+  // create a tooltip
+  var Tooltip = svg
     .append("text")
     .attr("x", 0)
     .attr("y", 0)
@@ -84,17 +85,17 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .y0(function(d) { return y(d[0]); })
     .y1(function(d) { return y(d[1]); })
 
-    // Show the areas
+  // Show the areas
   svg
-  .selectAll("mylayers")
-  .data(stackedData)
-  .enter()
-  .append("path")
-    .attr("class", "myArea")
-    .style("fill", function(d) { return color(d.key); })
-    .attr("d", area)
-    .on("mouseover", mouseover)
-    .on("mousemove", mousemove)
-    .on("mouseleave", mouseleave)
+    .selectAll("mylayers")
+    .data(stackedData)
+    .enter()
+    .append("path")
+      .attr("class", "myArea")
+      .style("fill", function(d) { return color(d.key); })
+      .attr("d", area)
+      .on("mouseover", mouseover)
+      .on("mousemove", mousemove)
+      .on("mouseleave", mouseleave)
 
 })
