@@ -22,7 +22,7 @@ var svg = d3.select("#my_dataviz")
 
   // List of groups = header of the csv files
   var keys = data.columns.slice(1)
-
+  console.log(keys)
   // Add X axis
   var x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { return d.year; }))
