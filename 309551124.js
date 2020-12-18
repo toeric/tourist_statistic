@@ -34,7 +34,7 @@ var svg = d3.select("#my_dataviz")
   //   .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([1900, 1925, 1975, 2000]))
   //   .select(".domain").remove()
   // Customization
-  console.log("back")
+  console.log("backzzz")
   svg.selectAll(".tick line").attr("stroke", "#b8b8b8")
 
   // Add X axis label:
