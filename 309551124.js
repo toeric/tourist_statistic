@@ -29,10 +29,10 @@ var svg = d3.select("#my_dataviz")
     .range([ 0, width ]);
 
   console.log("pre")
-  svg.append("g")
-    .attr("transform", "translate(0," + height*0.8 + ")")
-    .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([1900, 1925, 1975, 2000]))
-    .select(".domain").remove()
+  // svg.append("g")
+  //   .attr("transform", "translate(0," + height*0.8 + ")")
+  //   .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([1900, 1925, 1975, 2000]))
+  //   .select(".domain").remove()
   // Customization
   console.log("back")
   svg.selectAll(".tick line").attr("stroke", "#b8b8b8")
