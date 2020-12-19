@@ -17,7 +17,7 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-  d3.csv("./宗教場所.csv", function(data) {
+  d3.csv("./國家公園.csv", function(data) {
 
 
   // List of groups = header of the csv files
@@ -45,7 +45,7 @@ var svg = d3.select("#my_dataviz")
   // Add Y axis
   var y = d3.scaleLinear()
     // .domain([-2000000, 2000000])
-    .domain([-5000000, 5000000])
+    .domain([-2000000, 2000000])
     .range([ height, 0 ]);
 
   // color palette
