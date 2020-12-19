@@ -1,9 +1,11 @@
 
 
 // set the dimensions and margins of the graph
-var margin = {top: 200, right: 100, bottom: 0, left: 100},
-    width = 1400 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
+
+console.log("fl = 9")
+var margin = {top: 200, right: 100, bottom: 200, left: 100},
+    width = window.screen.width - margin.left - margin.right,
+    height = window.screen.height - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -15,24 +17,22 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv", function(data) {
-  // d3.csv("./國家公園.csv", function(data) {
+  d3.csv("./宗教場所.csv", function(data) {
 
-  console.log(data)
 
   // List of groups = header of the csv files
   var keys = data.columns.slice(1)
-
-  console.log(keys)
   // Add X axis
   var x = d3.scaleLinear()
-    .domain(d3.extent(data, function(d) { return d.year; }))
+    .domain(d3.extent(data, function(d) { return d.year_month; }))
     .range([ 0, width ]);
+
   svg.append("g")
     .attr("transform", "translate(0," + height*0.8 + ")")
-    .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([1900, 1925, 1975, 2000]))
+    .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([2012.076923, 2013.076923, 2014.076923, 2015.076923, 2016.076923, 2017.076923, 2018.076923, 2019.076923]))
     .select(".domain").remove()
   // Customization
+
   svg.selectAll(".tick line").attr("stroke", "#b8b8b8")
 
   // Add X axis label:
@@ -44,21 +44,20 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([-100000, 100000])
+    .domain([-5000000, 5000000])
     .range([ height, 0 ]);
 
   // color palette
   var color = d3.scaleOrdinal()
     .domain(keys)
-    .range(d3.schemeDark2);
+    .range(d3.schemeCategory20);
 
   //stack the data?
   var stackedData = d3.stack()
     .offset(d3.stackOffsetSilhouette)
     .keys(keys)
     (data)
-  
-  console.log(stackedData)
+
 
   // create a tooltip
   var Tooltip = svg
@@ -87,7 +86,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // Area generator
   var area = d3.area()
-    .x(function(d) { return x(d.data.year); })
+    .x(function(d) { return x(d.data.year_month); })
     .y0(function(d) { return y(d[0]); })
     .y1(function(d) { return y(d[1]); })
 
