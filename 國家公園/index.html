@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html>
+<head>
+  
   <meta charset="utf-8">
-
+  <style>
+    .button {
+      border: none;
+      color: white;
+      padding: 30px 50px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 10px;
+      margin: 4px 2px;
+      cursor: pointer;
+      width:200px;
+      height:70px;
+    }
+    
+    .button_each {background-color: #4CAF50;} /* Green */
+    
+    .class_table {
+      margin: 0;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    </style>
+  </head>
   <!-- Load d3.js & color scale-->
   <script src="https://d3js.org/d3.v4.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 
   <!-- Create a div where the graph will take place -->
-  <div id="my_dataviz"></div>
-  <script src="國家公園.js"></script>
+<div class = "class_table"></div>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/國家公園';">國家公園</button>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/博物館';">博物館</button>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/宗教場所';">宗教場所</button>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/休閒農業區';">休閒農業區</button>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/森林遊樂區';">森林遊樂區</button>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/國家級風景特定區';">國家級風景特定區</button>
+</div>
+
+<div id="my_dataviz"></div>
+<script src="國家公園.js"></script>
 </html>
