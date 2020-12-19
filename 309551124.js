@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = 3 ")
+console.log("fl = ˋ ")
 var margin = {top: 200, right: 100, bottom: 0, left: 100},
     width = 1400 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
