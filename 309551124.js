@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = 7")
+console.log("fl = 8")
 var margin = {top: 200, right: 100, bottom: 0, left: 100},
     width = 1400 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
@@ -53,7 +53,7 @@ var svg = d3.select("#my_dataviz")
   // color palette
   var color = d3.scaleOrdinal()
     .domain(keys)
-    .range(d3.schemeDark2);
+    .range(d3.schemeCategory20);
 
   //stack the data?
   var stackedData = d3.stack()
