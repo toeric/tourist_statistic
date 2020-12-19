@@ -1,6 +1,8 @@
 
 
 // set the dimensions and margins of the graph
+
+console.log("fl =1 ")
 var margin = {top: 200, right: 100, bottom: 0, left: 100},
     width = 1400 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
@@ -88,7 +90,7 @@ var svg = d3.select("#my_dataviz")
 
   // Area generator
   var area = d3.area()
-    .x(function(d) { return x(d.data.year); })
+    .x(function(d) { return x(d.data.year_month); })
     .y0(function(d) { return y(d[0]); })
     .y1(function(d) { return y(d[1]); })
 
