@@ -20,20 +20,18 @@ var svg = d3.select("#my_dataviz")
 // d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv", function(data) {
   d3.csv("./國家公園.csv", function(data) {
 
-  console.log(data)
 
   // List of groups = header of the csv files
   var keys = data.columns.slice(1)
-  console.log(keys)
   // Add X axis
   var x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { return d.year_month; }))
     .range([ 0, width ]);
 
-  // svg.append("g")
-  //   .attr("transform", "translate(0," + height*0.8 + ")")
-  //   .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([1900, 1925, 1975, 2000]))
-  //   .select(".domain").remove()
+  svg.append("g")
+    .attr("transform", "translate(0," + height*0.8 + ")")
+    .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([2012.076923, 2013.076923, 2014.076923, 2015.076923, 2016.076923, 2017.076923, 2018.076923, 2019.076923]))
+    .select(".domain").remove()
   // Customization
 
   svg.selectAll(".tick line").attr("stroke", "#b8b8b8")
@@ -61,7 +59,6 @@ var svg = d3.select("#my_dataviz")
     .keys(keys)
     (data)
 
-  console.log(stackedData )
 
   // create a tooltip
   var Tooltip = svg
