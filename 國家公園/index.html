@@ -4,6 +4,19 @@
   
   <meta charset="utf-8">
   <style>
+    .main_page {
+      border: none;
+      color: rgba(3, 3, 3, 0.808);
+      padding: 3px 3px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 5px;
+      margin: 2px 2px;
+      cursor: pointer;
+      width:102px;
+      height:40px;
+    }
     .button {
       border: none;
       color: white;
@@ -20,11 +33,20 @@
     
     .button_each {background-color: #4CAF50;} 
     .button_special {background-color: #281ba3;} 
+
+    .main_table {
+      margin: 0;
+      position: absolute;
+      top: 7%;
+      left: 53%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
     
     .class_table {
       margin: 0;
       position: absolute;
-      top: 20%;
+      top: 15%;
       left: 53%;
       -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
@@ -37,8 +59,13 @@
 
 
   <!-- Create a div where the graph will take place -->
+<div class = "main_table">
+  <button  class = "main_page">首頁</button>
+</div>
+
 <div class = "class_table">
-  <button class="button button_special" disabled">國家公園</button>
+  
+  <button class="button button_special" disabled>國家公園</button>
   <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/博物館';">博物館</button>
   <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/宗教場所';">宗教場所</button>
   <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/休閒農業區';">休閒農業區</button>
