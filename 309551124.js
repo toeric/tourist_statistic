@@ -27,7 +27,7 @@ var svg = d3.select("#my_dataviz")
   console.log(keys)
   // Add X axis
   var x = d3.scaleLinear()
-    .domain(d3.extent(data, function(d) { return d.year; }))
+    .domain(d3.extent(data, function(d) { return d.year_month; }))
     .range([ 0, width ]);
 
   // svg.append("g")
