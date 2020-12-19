@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = 6")
+console.log("fl = 7")
 var margin = {top: 200, right: 100, bottom: 0, left: 100},
     width = 1400 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
@@ -47,7 +47,7 @@ var svg = d3.select("#my_dataviz")
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([-200000, 200000])
+    .domain([-2000000, 2000000])
     .range([ height, 0 ]);
 
   // color palette
