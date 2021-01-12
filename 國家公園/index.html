@@ -52,19 +52,6 @@
       transform: translate(-50%, -50%);
     }
     </style>
-    <script> 
-
-      function changeImage()
-      {
-      var img = document.getElementById("image");
-      if(img.src=="img1.jpeg")
-        img.src="img2.jpeg";
-      else
-        img.src="img1.jpeg";
-      return false;
-      }
-      
-    </script>
   </head>
   <!-- Load d3.js & color scale-->
   <script src="https://d3js.org/d3.v4.js"></script>
@@ -87,8 +74,12 @@
 </div>
 
 <div id="my_dataviz"></div>
-<img id="image" src="img1.jpeg" />
+
 <br><br><br>
-<button id="clickme" onclick="changeImage();">Click to change image!</button>
+<button onclick="document.getElementById('myImage').src='img1.jpeg'">Turn to 1</button>
+
+<img id="myImage" src="img1.jpeg" style="width:100px">
+
+<button onclick="document.getElementById('myImage').src='img12jpeg'">Turn to 2</button>
 <script src="國家公園.js"></script>
 </html>
