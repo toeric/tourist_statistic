@@ -27,9 +27,10 @@ var svg = d3.select("#my_dataviz")
     .domain(d3.extent(data, function(d) { return d.year_month; }))
     .range([ 0, width ]);
 
+  var tickLabels = [2012, 2013, 2014 , 2015, 2016, 2017, 2018, 2019];
   svg.append("g")
     .attr("transform", "translate(0," + height*0.8 + ")")
-    .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([2012.076923, 2013.076923, 2014.076923, 2015.076923, 2016.076923, 2017.076923, 2018.076923, 2019.076923]))
+    .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([2012.076923, 2013.076923, 2014.076923, 2015.076923, 2016.076923, 2017.076923, 2018.076923, 2019.076923]).tickFormat(function(d,i){ return tickLabels[i] }))
     .select(".domain").remove()
   // Customization
 
