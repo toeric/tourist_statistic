@@ -91,6 +91,7 @@ var svg = d3.select("#my_dataviz")
   var mousemove = function(d,i) {
     grp = keys[i]
     Tooltip.text(grp)
+    console.log(grp)
   }
   var mouseleave = function(d) {
     Tooltip.style("opacity", 0)
