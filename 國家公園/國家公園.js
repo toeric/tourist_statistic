@@ -31,7 +31,7 @@ var svg = d3.select("#my_dataviz")
     .range([ 0, width ]);
 
   var tickLabels = [2012, 2013, 2014 , 2015, 2016, 2017, 2018, 2019];
-  var tickmonth = ['5月', '9月']
+  var tickmonth = ['7月']
   svg.append("g")
     .attr("transform", "translate(0," + height*0.8 + ")")
     .attr('stroke', 'rgba(256,0,0,1)')
@@ -43,7 +43,7 @@ var svg = d3.select("#my_dataviz")
     svg.append("g")
     .attr("transform", "translate(0," + height*0.8 + ")")
     .attr("stroke", "#b8b8b8")
-    .call(d3.axisBottom(x).tickSize(-height*.8).tickValues([i+0.384615, i+0.692308]).tickFormat(function(d,i){ return tickmonth[i] }))
+    .call(d3.axisBottom(x).tickSize(-height*.8).tickValues([i+0.538462]).tickFormat(function(d,i){ return tickmonth[i] }))
     .select(".domain").remove()
   }
 
@@ -96,7 +96,6 @@ var svg = d3.select("#my_dataviz")
   var mousemove = function(d,i) {
     grp = keys[i]
     Tooltip.text(grp)
-    console.log(grp)
   }
   var mouseleave = function(d) {
     Tooltip.style("opacity", 0)
