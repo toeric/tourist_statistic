@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = 1")
+console.log("fl = 2")
 var margin = {top: 200, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
@@ -28,9 +28,15 @@ var svg = d3.select("#my_dataviz")
     .range([ 0, width ]);
 
   var tickLabels = [2012, 2013, 2014 , 2015, 2016, 2017, 2018, 2019];
+  var tickmonth = ['3月', '6月', '9月']
   svg.append("g")
     .attr("transform", "translate(0," + height*0.8 + ")")
-    .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([2012.076923, 2013.076923, 2014.076923, 2015.076923, 2016.076923, 2017.076923, 2018.076923, 2019.076923]).tickFormat(function(d,i){ return tickLabels[i] }))
+    .call(d3.axisBottom(x).tickSize(-height*.9).tickValues([2012.076923, 2013.076923, 2014.076923, 2015.076923, 2016.076923, 2017.076923, 2018.076923, 2019.076923]).tickFormat(function(d,i){ return tickLabels[i] }))
+    .select(".domain").remove()
+
+  svg.append("g")
+    .attr("transform", "translate(0," + height*0.8 + ")")
+    .call(d3.axisBottom(x).tickSize(-height*.9).tickValues([2012.230769, 2012.461538, 2012.692308]).tickFormat(function(d,i){ return tickmonth[i] }))
     .select(".domain").remove()
   // Customization
 
