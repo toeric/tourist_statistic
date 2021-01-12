@@ -38,7 +38,7 @@ var svg = d3.select("#my_dataviz")
     .select(".domain").remove()
 
   svg.append("g")
-    .attr("transform", "translate(50," + height*0.9-50 + ")")
+    .attr("transform", "translate(50," + height*0.9+50 + ")")
     .call(d3.axisBottom(x).tickSize(-height*.9).tickValues([2012.384615, 2012.692308]).tickFormat(function(d,i){ return tickmonth[i] }))
     .select(".domain").remove()
   // Customization
