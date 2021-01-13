@@ -71,7 +71,7 @@ function change_img(obj){
       .attr("text-anchor", "end")
       .attr("x", width/2 + 100)
       .attr("y", height-30 )
-      .text("Time (year)");
+      .text("年份");
 
   // Add Y axis
   var y = d3.scaleLinear()
