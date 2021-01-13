@@ -69,7 +69,7 @@ function change_img(obj){
   // Add X axis label:
   svg.append("text")
       .attr("text-anchor", "end")
-      .attr("x", width/2-15)
+      .attr("x", width/2)
       .attr("y", height-30 )
       .text("Time (year)");
 
