@@ -23,7 +23,7 @@ var pic = document.getElementById('pic');
 
 function change_img(obj){
   var index=obj.selectedIndex;    //獲取索引值
-  console.log(idx)
+  console.log(index)
   var imgs=document.getElementById("imgs");
   var val=pic.options;
   console.log(val[index].text)
