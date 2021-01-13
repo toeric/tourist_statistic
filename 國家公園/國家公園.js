@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = change img7")
+console.log("fl = change img8")
 var margin = {top: 200, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
@@ -25,6 +25,7 @@ function change_img(obj){
   var index=pic.selectedIndex;    //獲取索引值
   var imgs=document.getElementById("imgs");
   var val=pic.options;
+  console.log(val[index].text)
   imgs.src="img/"+val[index].text;   ////動態設定img的src屬性值，隨著滑鼠的選擇切換圖片
   // imgs.src="img/"+pic.value;
   console.log(imgs.src)
