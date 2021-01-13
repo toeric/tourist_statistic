@@ -25,10 +25,11 @@ function change_img(obj){
   var index=obj.selectedIndex;    //獲取索引值
   console.log(index)
   var imgs=document.getElementById("imgs");
-  var val=pic.options;
-  console.log(val[index].text)
+  // var val=pic.options;
+  // console.log(val[index].text)
   imgs.src="img/"+index.toString();   ////動態設定img的src屬性值，隨著滑鼠的選擇切換圖片
   // imgs.src="img/"+pic.value;
+  console.log("img/"+index.toString())
   console.log(imgs.src)
  }
 
