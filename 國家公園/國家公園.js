@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = 14")
+console.log("fl = 15")
 var margin = {top: 220, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
@@ -47,7 +47,7 @@ function change_img(obj){
   var tickLabels = [2012, 2013, 2014 , 2015, 2016, 2017, 2018, 2019];
   var tickmonth = ['7月']
   svg.append("g")
-    .attr("transform", "translate(6," + height*0.8 + ")")
+    .attr("transform", "translate(3," + height*0.8 + ")")
     .attr('stroke', 'rgba(256,0,0,1)')
     .call(d3.axisBottom(x).tickSize(-height*0.8).tickValues([2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]).tickFormat(function(d,i){ return tickLabels[i] }))
     .select(".domain").remove()
@@ -55,7 +55,7 @@ function change_img(obj){
 
   for(var i=2012 ; i <= 2019 ; i++){
     svg.append("g")
-    .attr("transform", "translate(6," + height*0.8 + ")")
+    .attr("transform", "translate(3," + height*0.8 + ")")
     .attr("stroke", "#b8b8b8")
     .call(d3.axisBottom(x).tickSize(-height*.8).tickValues([i+0.5]).tickFormat(function(d,i){ return tickmonth[i] }))
     .select(".domain").remove()
