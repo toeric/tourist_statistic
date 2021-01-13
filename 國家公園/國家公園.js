@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = change img2")
+console.log("fl = change img3")
 var margin = {top: 200, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
