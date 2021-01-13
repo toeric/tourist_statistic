@@ -314,7 +314,7 @@ var hoverLineGroup = svg.append("g")
         .append('text')
             .attr("class", "hover-text")
             .attr("y", height - (height-40)) // hover date text position
-            .attr("x", width - 150) // hover date text position
+            .attr("x", width - 150 + margin.left - 40) // hover date text position
             .style("fill", "#E6E7E8");
 
   var columnNames = d3.keys(data[0]) //grab the key values from your first data row
