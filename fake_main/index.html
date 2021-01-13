@@ -68,8 +68,8 @@ body {
 
 console.log("fl=2");
 
-var margin = {top: 20, right: 100, bottom: 100, left: 400},
-    margin2 = { top: 430, right: 10, bottom: 20, left: 390 },
+var margin = {top: 20, right: 200, bottom: 100, left: 200},
+    margin2 = { top: 430, right: 10, bottom: 20, left: 190 },
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     height2 = 500 - margin2.top - margin2.bottom;
@@ -219,7 +219,7 @@ d3.tsv("new_data.tsv", function(error, data) {
       .attr("x", -10)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Issues Rating");
+      .text("");
 
   var issue = svg.selectAll(".issue")
       .data(categories) // Select nested data and append to new svg group elements
