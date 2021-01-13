@@ -2,10 +2,13 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = 9")
-var margin = {top: 200, right: 100, bottom: 200, left: 100},
+console.log("fl = 16")
+var margin = {top: 220, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
+
+console.log(width)
+console.log(height)
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -16,8 +19,22 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+var pic = document.getElementById('pic');
+
+function change_img(obj){
+  var index=obj.selectedIndex;    //獲取索引值
+  console.log(index)
+  var imgs=document.getElementById("imgs");
+  // var val=pic.options;
+  // console.log(val[index].text)
+  imgs.src="img/"+index.toString()+".png";   ////動態設定img的src屬性值，隨著滑鼠的選擇切換圖片
+  // imgs.src="img/"+pic.value;
+  console.log("img/"+index.toString()+".png")
+  console.log(imgs.src)
+ }
+
 // Parse the Data
-  d3.csv("./宗教場所.csv", function(data) {
+  d3.csv("國家公園.csv", function(data) {
 
 
   // List of groups = header of the csv files
@@ -27,24 +44,40 @@ var svg = d3.select("#my_dataviz")
     .domain(d3.extent(data, function(d) { return d.year_month; }))
     .range([ 0, width ]);
 
+  var tickLabels = [2012, 2013, 2014 , 2015, 2016, 2017, 2018, 2019];
+  var tickmonth = ['7月']
   svg.append("g")
-    .attr("transform", "translate(0," + height*0.8 + ")")
-    .call(d3.axisBottom(x).tickSize(-height*.7).tickValues([2012.076923, 2013.076923, 2014.076923, 2015.076923, 2016.076923, 2017.076923, 2018.076923, 2019.076923]))
+    .attr("transform", "translate(1," + height*0.8 + ")")
+    .attr('stroke', 'rgba(256,0,0,1)')
+    .call(d3.axisBottom(x).tickSize(-height*0.8).tickValues([2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]).tickFormat(function(d,i){ return tickLabels[i] }))
     .select(".domain").remove()
+
+
+  for(var i=2012 ; i <= 2019 ; i++){
+    svg.append("g")
+    .attr("transform", "translate(1," + height*0.8 + ")")
+    .attr("stroke", "#b8b8b8")
+    .call(d3.axisBottom(x).tickSize(-height*.8).tickValues([i+0.5]).tickFormat(function(d,i){ return tickmonth[i] }))
+    .select(".domain").remove()
+  }
+
+
   // Customization
 
-  svg.selectAll(".tick line").attr("stroke", "#b8b8b8")
+  // svg.selectAll(".tick line").attr("stroke", "#b8b8b8")
 
   // Add X axis label:
   svg.append("text")
       .attr("text-anchor", "end")
-      .attr("x", width)
+      .attr("x", width/2 + 60)
       .attr("y", height-30 )
-      .text("Time (year)");
+      .text("年份")
+      .style("font-size", 20)
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([-5000000, 5000000])
+    // .domain([-2000000, 2000000])
+    .domain([-2000000, 2000000])
     .range([ height, 0 ]);
 
   // color palette
@@ -63,9 +96,9 @@ var svg = d3.select("#my_dataviz")
   var Tooltip = svg
     .append("text")
     .attr("x", 0)
-    .attr("y", 0)
+    .attr("y", -20)
     .style("opacity", 0)
-    .style("font-size", 17)
+    .style("font-size", 23)
 
   // Three function that change the tooltip when user hover / move / leave a cell
   var mouseover = function(d) {
@@ -102,5 +135,15 @@ var svg = d3.select("#my_dataviz")
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)
       .on("mouseleave", mouseleave)
+
+
+  console.log(keys);    
+  
+  for(var i = 0;i<keys.length;i++){
+    pic.add(new Option(keys[i]));
+  }
+
+
+  
 
 })
