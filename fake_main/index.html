@@ -68,8 +68,8 @@ body {
 
 console.log("fl=2");
 
-var margin = {top: 20, right: 200, bottom: 100, left: 200},
-    margin2 = { top: 430, right: 10, bottom: 20, left: 190 },
+var margin = {top: 20, right: 200, bottom: 100, left: 400},
+    margin2 = { top: 430, right: 10, bottom: 20, left: 390 },
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     height2 = 500 - margin2.top - margin2.bottom;
@@ -244,7 +244,7 @@ d3.tsv("new_data.tsv", function(error, data) {
   issue.append("rect")
       .attr("width", 10)
       .attr("height", 10)                                    
-      .attr("x", width + (margin.right/3) - 15) 
+      .attr("x", width + (margin.right/3) - 15 + 30) 
       .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace) - 8; })  // spacing
       .attr("fill",function(d) {
         return d.visible ? color(d.name) : "#F1F1F2"; // If array key "visible" = true then color rect, if not then make it grey 
@@ -297,7 +297,7 @@ d3.tsv("new_data.tsv", function(error, data) {
       })
       
   issue.append("text")
-      .attr("x", width + (margin.right/3)) 
+      .attr("x", width + (margin.right/3) + 30) 
       .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace); })  // (return (11.25/2 =) 5.625) + i * (5.625) 
       .text(function(d) { return d.name; }); 
 
