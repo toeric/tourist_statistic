@@ -91,7 +91,7 @@ function change_img(obj){
   var Tooltip = svg
     .append("text")
     .attr("x", 0)
-    .attr("y", 0)
+    .attr("y", -20)
     .style("opacity", 0)
     .style("font-size", 17)
 
