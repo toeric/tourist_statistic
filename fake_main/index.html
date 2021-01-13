@@ -60,9 +60,46 @@ body {
   shape-rendering: crispEdges;
 }
 
+.button {
+  border: none;
+  color: white;
+  padding: 30px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width:230px;
+  height:100px;
+}
+
+.button_each {background-color: #4CAF50;} /* Green */
+
+.class_table {
+  margin: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 </style>
 </head>
 <body>
+
+  <div style="text-align:center;"><h1>歷年國內主要觀光遊憩據點遊客人數月別統計</h1></div>
+  <p style="text-align:center;">單一類別觀光遊憩據點人數比較：</p>
+  <div class = "class_table">
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/國家公園';">國家公園</button>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/博物館';">博物館</button>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/宗教場所';">宗教場所</button>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/休閒農業區';">休閒農業區</button>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/森林遊樂區';">森林遊樂區</button>
+  <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/國家級風景特定區';">國家級風景特定區</button>
+  </div>
+</body>
 <script src="https://d3js.org/d3.v3.js"></script>
 <script>
 
