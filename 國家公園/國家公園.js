@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = 11")
+console.log("fl = keys console")
 var margin = {top: 200, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
@@ -120,5 +120,13 @@ var svg = d3.select("#my_dataviz")
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)
       .on("mouseleave", mouseleave)
+
+
+  console.log(keys);    
+  var pic = document.getElementById('pic');
+  for(var i = 0;i<keys.length;i++){
+    pic.add(new Option(keys[i]));
+  }
+  
 
 })
