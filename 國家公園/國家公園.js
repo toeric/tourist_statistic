@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = change img3")
+console.log("fl = change img4")
 var margin = {top: 200, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
@@ -18,6 +18,16 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
+var pic = document.getElementById('pic');
+
+function change_img(obj){
+  var index=pic.selectedIndex;    //獲取索引值
+  var imgs=document.getElementById("imgs");
+  var val=pic.options;
+  imgs.src="img/"+val[index].value;   ////動態設定img的src屬性值，隨著滑鼠的選擇切換圖片
+  console.log(imgs.src)
+ }
 
 // Parse the Data
   d3.csv("國家公園.csv", function(data) {
@@ -123,19 +133,12 @@ var svg = d3.select("#my_dataviz")
 
 
   console.log(keys);    
-  var pic = document.getElementById('pic');
+  
   for(var i = 0;i<keys.length;i++){
     pic.add(new Option(keys[i]));
   }
 
-  document.getElementById("imgs").src = 'img/'+ keys[0];
-  function change_img(obj){
-   var index=pic.selectedIndex;    //獲取索引值
-   var imgs=document.getElementById("imgs");
-   var val=pic.options;
-   imgs.src="img/"+val[index].value;   ////動態設定img的src屬性值，隨著滑鼠的選擇切換圖片
-   console.log(imgs.src)
-  }
+
   
 
 })
