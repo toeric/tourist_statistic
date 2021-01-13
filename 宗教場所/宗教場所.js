@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = 17")
+console.log("fl = 18")
 var margin = {top: 220, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
@@ -77,7 +77,7 @@ function change_img(obj){
   // Add Y axis
   var y = d3.scaleLinear()
     // .domain([-2000000, 2000000])
-    .domain([-2000000, 2000000])
+    .domain([-8000000, 8000000])
     .range([ height, 0 ]);
 
   // color palette
