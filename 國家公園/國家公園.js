@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = change img8")
+console.log("fl = change img9")
 var margin = {top: 200, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
@@ -22,7 +22,7 @@ var svg = d3.select("#my_dataviz")
 var pic = document.getElementById('pic');
 
 function change_img(obj){
-  var index=pic.selectedIndex;    //獲取索引值
+  var index=obj.selectedIndex;    //獲取索引值
   var imgs=document.getElementById("imgs");
   var val=pic.options;
   console.log(val[index].text)
