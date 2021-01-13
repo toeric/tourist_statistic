@@ -67,7 +67,7 @@ function change_img(obj){
   svg.append("text")
       .attr("text-anchor", "end")
       .attr("x", width)
-      .attr("y", height-30 )
+      .attr("y", height/2-30 )
       .text("Time (year)");
 
   // Add Y axis
