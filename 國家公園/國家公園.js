@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = 13")
+console.log("fl = 14")
 var margin = {top: 220, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
@@ -71,7 +71,8 @@ function change_img(obj){
       .attr("text-anchor", "end")
       .attr("x", width/2 + 60)
       .attr("y", height-30 )
-      .text("年份");
+      .text("年份")
+      .style("font-size", 20)
 
   // Add Y axis
   var y = d3.scaleLinear()
@@ -97,7 +98,7 @@ function change_img(obj){
     .attr("x", 0)
     .attr("y", -20)
     .style("opacity", 0)
-    .style("font-size", 20)
+    .style("font-size", 23)
 
   // Three function that change the tooltip when user hover / move / leave a cell
   var mouseover = function(d) {
