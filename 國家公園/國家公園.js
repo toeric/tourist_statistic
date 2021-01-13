@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = change img")
+console.log("fl = change img2")
 var margin = {top: 200, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
@@ -134,6 +134,7 @@ var svg = d3.select("#my_dataviz")
    var imgs=document.getElementById("imgs");
    var val=pic.options;
    imgs.src="img/"+val[index].value;   ////動態設定img的src屬性值，隨著滑鼠的選擇切換圖片
+   console.log(imgs.src)
   }
   
 
