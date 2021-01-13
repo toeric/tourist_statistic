@@ -164,7 +164,7 @@ d3.tsv("new_data.tsv", function(error, data) {
 
   xScale.domain(d3.extent(data, function(d) { return d.date; })); // extent = highest and lowest points, domain is data, range is bouding box
 
-  yScale.domain([0, 1000000
+  yScale.domain([0, 50000000
     //d3.max(categories, function(c) { return d3.max(c.values, function(v) { return v.rating; }); })
   ]);
 
