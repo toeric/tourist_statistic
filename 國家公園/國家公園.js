@@ -26,7 +26,7 @@ function change_img(obj){
   var imgs=document.getElementById("imgs");
   var val=pic.options;
   // imgs.src="img/"+val[index].value;   ////動態設定img的src屬性值，隨著滑鼠的選擇切換圖片
-  imgs.src="img/"+pic.text();
+  imgs.src="img/"+pic.value;
   console.log(imgs.src)
  }
 
