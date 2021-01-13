@@ -34,7 +34,6 @@ body {
   stroke: #E6E7E8;
   stroke-width: 1px;
 }
-
 .hover-line { 
   stroke: #E6E7E8;
   fill: none;
@@ -66,11 +65,14 @@ body {
 <script src="https://d3js.org/d3.v3.js"></script>
 <script>
 
+console.log("fl=1");
+
 var margin = {top: 20, right: 200, bottom: 100, left: 50},
     margin2 = { top: 430, right: 10, bottom: 20, left: 40 },
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     height2 = 500 - margin2.top - margin2.bottom;
+
 
 var parseDate = d3.time.format("%Y%m%d").parse;
 var bisectDate = d3.bisector(function(d) { return d.date; }).left;
@@ -86,7 +88,6 @@ var yScale = d3.scale.linear()
 
 // 40 Custom DDV colors 
 var color = d3.scale.ordinal().range(["#48A36D",  "#56AE7C",  "#64B98C", "#72C39B", "#80CEAA", "#80CCB3", "#7FC9BD", "#7FC7C6", "#7EC4CF", "#7FBBCF", "#7FB1CF", "#80A8CE", "#809ECE", "#8897CE", "#8F90CD", "#9788CD", "#9E81CC", "#AA81C5", "#B681BE", "#C280B7", "#CE80B0", "#D3779F", "#D76D8F", "#DC647E", "#E05A6D", "#E16167", "#E26962", "#E2705C", "#E37756", "#E38457", "#E39158", "#E29D58", "#E2AA59", "#E0B15B", "#DFB95C", "#DDC05E", "#DBC75F", "#E3CF6D", "#EAD67C", "#F2DE8A"]);  
-
 
 var xAxis = d3.svg.axis()
     .scale(xScale)
@@ -114,6 +115,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
 // Create invisible rect for mouse tracking
 svg.append("rect")
     .attr("width", width)
@@ -139,7 +141,7 @@ svg.append("defs")
 
 //end slider part----------------------------------------------------------------------------------- 
 
-d3.tsv("data.tsv", function(error, data) { 
+d3.tsv("new_data.tsv", function(error, data) { 
   color.domain(d3.keys(data[0]).filter(function(key) { // Set the domain of the color ordinal scale to be all the csv headers except "date", matching a color to an issue
     return key !== "date"; 
   }));
@@ -176,7 +178,7 @@ d3.tsv("data.tsv", function(error, data) {
     .x(xScale2) 
     .on("brush", brushed);
 
-  context.append("g") // Create brushing xAxis
+    context.append("g") // Create brushing xAxis
       .attr("class", "x axis1")
       .attr("transform", "translate(0," + height2 + ")")
       .call(xAxis2);
@@ -208,16 +210,16 @@ d3.tsv("data.tsv", function(error, data) {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("x", -10)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Issues Rating");
+    //   svg.append("g")
+    //   .attr("class", "y axis")
+    //   .call(yAxis)
+    // .append("text")
+    //   .attr("transform", "rotate(-90)")
+    //   .attr("y", 6)
+    //   .attr("x", -10)
+    //   .attr("dy", ".71em")
+    //   .style("text-anchor", "end")
+    //   .text("Issues Rating");
 
   var issue = svg.selectAll(".issue")
       .data(categories) // Select nested data and append to new svg group elements
@@ -242,7 +244,7 @@ d3.tsv("data.tsv", function(error, data) {
   issue.append("rect")
       .attr("width", 10)
       .attr("height", 10)                                    
-      .attr("x", width + (margin.right/3) - 15) 
+      .attr("x", width + (margin.right/3) - 1) 
       .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace) - 8; })  // spacing
       .attr("fill",function(d) {
         return d.visible ? color(d.name) : "#F1F1F2"; // If array key "visible" = true then color rect, if not then make it grey 
@@ -270,40 +272,39 @@ d3.tsv("data.tsv", function(error, data) {
           return d.visible ? color(d.name) : "#F1F1F2";
         });
       })
-
       .on("mouseover", function(d){
 
-        d3.select(this)
-          .transition()
-          .attr("fill", function(d) { return color(d.name); });
+d3.select(this)
+  .transition()
+  .attr("fill", function(d) { return color(d.name); });
 
-        d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
-          .transition()
-          .style("stroke-width", 2.5);  
-      })
+d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
+  .transition()
+  .style("stroke-width", 2.5);  
+})
 
-      .on("mouseout", function(d){
+.on("mouseout", function(d){
 
-        d3.select(this)
-          .transition()
-          .attr("fill", function(d) {
-          return d.visible ? color(d.name) : "#F1F1F2";});
+d3.select(this)
+  .transition()
+  .attr("fill", function(d) {
+  return d.visible ? color(d.name) : "#F1F1F2";});
 
-        d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
-          .transition()
-          .style("stroke-width", 1.5);
-      })
-      
-  issue.append("text")
-      .attr("x", width + (margin.right/3)) 
-      .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace); })  // (return (11.25/2 =) 5.625) + i * (5.625) 
-      .text(function(d) { return d.name; }); 
+d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
+  .transition()
+  .style("stroke-width", 1.5);
+})
 
-  // Hover line 
-  var hoverLineGroup = svg.append("g") 
-            .attr("class", "hover-line");
+issue.append("text")
+.attr("x", width + (margin.right/3)+30) 
+.attr("y", function (d, i) { return (legendSpace)+i*(legendSpace); })  // (return (11.25/2 =) 5.625) + i * (5.625) 
+.text(function(d) { return d.name; }); 
 
-  var hoverLine = hoverLineGroup // Create line with basic attributes
+// Hover line 
+var hoverLineGroup = svg.append("g") 
+    .attr("class", "hover-line");
+
+    var hoverLine = hoverLineGroup // Create line with basic attributes
         .append("line")
             .attr("id", "hover-line")
             .attr("x1", 10).attr("x2", 10) 
@@ -333,6 +334,7 @@ d3.tsv("data.tsv", function(error, data) {
         .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace); }); // (return (11.25/2 =) 5.625) + i * (5.625) // position tooltips       
 
   // Add mouseover events for hover line.
+
   d3.select("#mouse-tracker") // select chart plot background rect #mouse-tracker
   .on("mousemove", mousemove) // on mousemove activate mousemove function defined below
   .on("mouseout", function() {
@@ -360,6 +362,7 @@ d3.tsv("data.tsv", function(error, data) {
           .attr("x2", mouse_x)
           .style("opacity", 1); // Making line visible
 
+
       // Legend tooltips // http://www.d3noob.org/2014/07/my-favourite-tooltip-method-for-line.html
 
       var x0 = xScale.invert(d3.mouse(this)[0]), /* d3.mouse(this)[0] returns the x position on the screen of the mouse. xScale.invert function is reversing the process that we use to map the domain (date) to range (position on screen). So it takes the position on the screen and converts it into an equivalent date! */
@@ -384,38 +387,38 @@ d3.tsv("data.tsv", function(error, data) {
   //for brusher of the slider bar at the bottom
   function brushed() {
 
-    xScale.domain(brush.empty() ? xScale2.domain() : brush.extent()); // If brush is empty then reset the Xscale domain to default, if not then make it the brush extent 
+xScale.domain(brush.empty() ? xScale2.domain() : brush.extent()); // If brush is empty then reset the Xscale domain to default, if not then make it the brush extent 
 
-    svg.select(".x.axis") // replot xAxis with transition when brush used
-          .transition()
-          .call(xAxis);
-
-    maxY = findMaxY(categories); // Find max Y rating value categories data with "visible"; true
-    yScale.domain([0,maxY]); // Redefine yAxis domain based on highest y value of categories data with "visible"; true
-    
-    svg.select(".y.axis") // Redraw yAxis
+svg.select(".x.axis") // replot xAxis with transition when brush used
       .transition()
-      .call(yAxis);   
+      .call(xAxis);
 
-    issue.select("path") // Redraw lines based on brush xAxis scale and domain
-      .transition()
-      .attr("d", function(d){
-          return d.visible ? line(d.values) : null; // If d.visible is true then draw line for this d selection
-      });
-    
-  };      
+maxY = findMaxY(categories); // Find max Y rating value categories data with "visible"; true
+yScale.domain([0,maxY]); // Redefine yAxis domain based on highest y value of categories data with "visible"; true
+
+svg.select(".y.axis") // Redraw yAxis
+  .transition()
+  .call(yAxis);   
+
+issue.select("path") // Redraw lines based on brush xAxis scale and domain
+  .transition()
+  .attr("d", function(d){
+      return d.visible ? line(d.values) : null; // If d.visible is true then draw line for this d selection
+  });
+
+};      
 
 }); // End Data callback function
-  
-  function findMaxY(data){  // Define function "findMaxY"
-    var maxYValues = data.map(function(d) { 
-      if (d.visible){
-        return d3.max(d.values, function(value) { // Return max rating value
-          return value.rating; })
-      }
-    });
-    return d3.max(maxYValues);
+
+function findMaxY(data){  // Define function "findMaxY"
+var maxYValues = data.map(function(d) { 
+  if (d.visible){
+    return d3.max(d.values, function(value) { // Return max rating value
+      return value.rating; })
   }
+});
+return d3.max(maxYValues);
+}
 
 </script>
 </html>
