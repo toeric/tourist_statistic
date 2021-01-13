@@ -65,8 +65,8 @@ body {
 <script src="https://d3js.org/d3.v3.js"></script>
 <script>
 
-var margin = {top: 20, right: 200, bottom: 100, left: 70},
-    margin2 = { top: 430, right: 10, bottom: 20, left: 60 },
+var margin = {top: 20, right: 200, bottom: 100, left: 50},
+    margin2 = { top: 430, right: 10, bottom: 20, left: 40 },
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     height2 = 500 - margin2.top - margin2.bottom;
@@ -242,7 +242,7 @@ d3.tsv("new_data.tsv", function(error, data) {
   issue.append("rect")
       .attr("width", 10)
       .attr("height", 10)                                    
-      .attr("x", width + (margin.right/3) - 15) 
+      .attr("x", width + (margin.right/3) - 1) 
       .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace) - 8; })  // spacing
       .attr("fill",function(d) {
         return d.visible ? color(d.name) : "#F1F1F2"; // If array key "visible" = true then color rect, if not then make it grey 
@@ -294,7 +294,7 @@ d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
 })
 
 issue.append("text")
-.attr("x", width + (margin.right/3)+100) 
+.attr("x", width + (margin.right/3)+30) 
 .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace); })  // (return (11.25/2 =) 5.625) + i * (5.625) 
 .text(function(d) { return d.name; }); 
 
