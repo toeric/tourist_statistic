@@ -33,7 +33,7 @@ var svg = d3.select("#my_dataviz")
   var tickLabels = [2012, 2013, 2014 , 2015, 2016, 2017, 2018, 2019];
   var tickmonth = ['7月']
   svg.append("g")
-    .attr("transform", "translate(10," + height*0.8 + ")")
+    .attr("transform", "translate(12," + height*0.8 + ")")
     .attr('stroke', 'rgba(256,0,0,1)')
     .call(d3.axisBottom(x).tickSize(-height*0.8).tickValues([2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]).tickFormat(function(d,i){ return tickLabels[i] }))
     .select(".domain").remove()
@@ -41,7 +41,7 @@ var svg = d3.select("#my_dataviz")
 
   for(var i=2012 ; i <= 2019 ; i++){
     svg.append("g")
-    .attr("transform", "translate(10," + height*0.8 + ")")
+    .attr("transform", "translate(12," + height*0.8 + ")")
     .attr("stroke", "#b8b8b8")
     .call(d3.axisBottom(x).tickSize(-height*.8).tickValues([i+0.5]).tickFormat(function(d,i){ return tickmonth[i] }))
     .select(".domain").remove()
