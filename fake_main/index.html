@@ -99,7 +99,7 @@ body {
   <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/森林遊樂區';">森林遊樂區</button>
   <button class="button button_each" onclick="location.href='https://toeric.github.io/tourist_statistic/國家級風景特定區';">國家級風景特定區</button>
   </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <div>
   <p style="text-align:center;">不同縣市觀光遊憩據點人數比較：</p>
   </div>
@@ -109,12 +109,12 @@ body {
 
 console.log("fl=4");
 
-var margin = {top: 520, right: 300, bottom: 100, left: 300},
-    margin2 = { top: 930, right: 10, bottom: 20, left: 290 },
+var margin = {top: 220, right: 300, bottom: 100, left: 300},
+    margin2 = { top: 630, right: 10, bottom: 20, left: 290 },
     // width = 960 - margin.left - margin.right,
     width = 1240 - margin.left - margin.right,
-    height = 1000 - margin.top - margin.bottom,
-    height2 = 1000 - margin2.top - margin2.bottom;
+    height = 700 - margin.top - margin.bottom,
+    height2 = 700 - margin2.top - margin2.bottom;
 
 var parseDate = d3.time.format("%Y%m%d").parse;
 var bisectDate = d3.bisector(function(d) { return d.date; }).left;
