@@ -110,12 +110,12 @@ body {
 
 console.log("fl=4");
 
-var margin = {top: 70, right: 300, bottom: 100, left: 300},
-    margin2 = { top: 480, right: 10, bottom: 20, left: 290 },
+var margin = {top: 50, right: 300, bottom: 100, left: 300},
+    margin2 = { top: 460, right: 10, bottom: 20, left: 290 },
     // width = 960 - margin.left - margin.right,
     width = 1240 - margin.left - margin.right,
-    height = 550 - margin.top - margin.bottom,
-    height2 = 550 - margin2.top - margin2.bottom;
+    height = 530 - margin.top - margin.bottom,
+    height2 = 530 - margin2.top - margin2.bottom;
 
 var parseDate = d3.time.format("%Y%m%d").parse;
 var bisectDate = d3.bisector(function(d) { return d.date; }).left;
