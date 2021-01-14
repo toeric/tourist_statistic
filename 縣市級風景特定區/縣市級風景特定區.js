@@ -2,7 +2,7 @@
 
 // set the dimensions and margins of the graph
 
-console.log("fl = 18")
+console.log("fl = 17")
 var margin = {top: 220, right: 100, bottom: 150, left: 100},
     width = window.screen.width - margin.left - margin.right,
     height = window.screen.height - margin.top - margin.bottom;
@@ -34,7 +34,7 @@ function change_img(obj){
  }
 
 // Parse the Data
-  d3.csv("博物館.csv", function(data) {
+  d3.csv("國家公園.csv", function(data) {
 
 
   // List of groups = header of the csv files
@@ -77,7 +77,7 @@ function change_img(obj){
   // Add Y axis
   var y = d3.scaleLinear()
     // .domain([-2000000, 2000000])
-    .domain([-6300000, 6300000])
+    .domain([-2000000, 2000000])
     .range([ height, 0 ]);
 
   // color palette
