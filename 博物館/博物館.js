@@ -77,7 +77,7 @@ function change_img(obj){
   // Add Y axis
   var y = d3.scaleLinear()
     // .domain([-2000000, 2000000])
-    .domain([-2000000, 2000000])
+    .domain([-6000000, 6000000])
     .range([ height, 0 ]);
 
   // color palette
