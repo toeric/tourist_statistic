@@ -34,7 +34,7 @@ function change_img(obj){
  }
 
 // Parse the Data
-  d3.csv("國家公園.csv", function(data) {
+  d3.csv("縣市級風景特定區.csv", function(data) {
 
 
   // List of groups = header of the csv files
